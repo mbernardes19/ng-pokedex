@@ -1,0 +1,31 @@
+nav {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    background-color: grey;
+    padding: 5px;
+}
+
+button {
+    border: 1px solid darkblue;
+    width: 80px;
+    border-radius: 5px;
+    background-color: blue;
+    color: white;
+}
+
+button:hover {
+    background-color: lightblue;
+}
+
+button.vermelho {
+    border: 1px solid darkred;
+    width: 80px;
+    border-radius: 5px;
+    background-color: red;
+    color: white;
+}
+
+button.vermelho:hover {
+    background-color: lightcoral;
+}
