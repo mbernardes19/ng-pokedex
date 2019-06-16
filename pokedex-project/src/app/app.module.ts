@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MainComponent } from './main/main.component';
+import { TraduzTipoPipe } from './main/traduz-tipo.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     MainComponent,
+    TraduzTipoPipe,
   ],
   imports: [
     HttpClientModule,

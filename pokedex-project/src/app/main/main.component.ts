@@ -8,24 +8,27 @@ import { MainService } from './main.service';
 })
 export class MainComponent implements OnInit {
   @Input() nomePokemon: string;
-  pokemon: any;
+  pokemonJSON: any;
+  idPokemon: number;
   urlImagem: string;
   tiposPokemon: string[] = [];
   pesoPokemon: number;
   alturaPokemon: number;
+  @Input() jujuba: string;
 
   constructor(private mainService: MainService) { }
 
   ngOnInit() {
     this.pegarPokemon().subscribe(
-      pokemon => {
-        this.pokemon = pokemon
+      pokemonJSON => {
+        this.pokemonJSON = pokemonJSON
       
-        this.pegarNome(this.pokemon);
-        this.pegarImagem(this.pokemon);
-        this.pegarTipo(this.pokemon);
-        this.pegarPeso(this.pokemon);
-        this.pegarAltura(this.pokemon);
+        this.pegarNome(this.pokemonJSON);
+        this.pegarImagem(this.pokemonJSON);
+        this.pegarTipo(this.pokemonJSON);
+        this.pegarPeso(this.pokemonJSON);
+        this.pegarAltura(this.pokemonJSON);
+        this.pegarNum(this.pokemonJSON);
     });
   }
 
@@ -33,26 +36,30 @@ export class MainComponent implements OnInit {
     return this.mainService.pegarPokemonPorNome(this.nomePokemon);
   }
 
-  pegarNome(pokemon) {
-      this.nomePokemon = pokemon.name;
+  pegarNum(pokemonJSON){
+    this.idPokemon = pokemonJSON.id;
   }
 
-  pegarImagem(pokemon) {
-      this.urlImagem = pokemon.sprites.front_default;
+  pegarNome(pokemonJSON) {
+      this.nomePokemon = pokemonJSON.name;
   }
 
-  pegarTipo(pokemon) {
-      pokemon.types.map((t) => {
+  pegarImagem(pokemonJSON) {
+      this.urlImagem = pokemonJSON.sprites.front_default;
+  }
+
+  pegarTipo(pokemonJSON) {
+      pokemonJSON.types.map((t) => {
         this.tiposPokemon.push(t.type.name);
       })
   }
 
-  pegarPeso(pokemon) {
-    this.pesoPokemon = pokemon.weight;
+  pegarPeso(pokemonJSON) {
+    this.pesoPokemon = pokemonJSON.weight;
   }
 
-  pegarAltura(pokemon) {
-    this.alturaPokemon = pokemon.height;
+  pegarAltura(pokemonJSON) {
+    this.alturaPokemon = pokemonJSON.height;
   }
 
 }

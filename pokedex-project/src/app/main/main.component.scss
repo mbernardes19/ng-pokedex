@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+*{
+    font-family: 'Roboto', sans-serif;
+}
+
+#container {
+    display: flex;
+    width: 80%;
+    height:150px;
+    margin: 0 auto;
+}
+
+#nome {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#imagem img{
+    width:150px;
+}
+
+.tipo {
+    font-size:12px;
+    color: white;
+    font-weight: bolder;
+    // Falta colocar border no texto
+}
+
+.flying {
+    border-radius: 30px;
+    width:50px;
+    padding: 3px;
+    text-align: center;
+    background-color: #79A4FF;
+}
+
+.normal {
+    border-radius: 30px;
+    width:50px;
+    padding: 3px;
+    text-align: center;
+    background-color: #BCBCAE;
+}
+
+.fire {
+    border-radius: 30px;
+    width:50px;
+    padding: 3px;
+    text-align: center;
+    background-color: #FA5543;
+}
+
+.grass {
+    border-radius: 30px;
+    width:50px;
+    padding: 3px;
+    text-align: center;
+    background-color: #8DD851;
+}
+
+.water {
+    border-radius: 30px;
+    width:50px;
+    padding: 3px;
+    text-align: center;
+    background-color: #56AEFF;
+}
+
+.fighting {
+    border-radius: 30px;
+    width:50px;
+    padding: 3px;
+    text-align: center;
+    background-color: #A85645;
+}
+
+.poison {
+    border-radius: 30px;
+    width:50px;
+    padding: 3px;
+    text-align: center;
+    background-color: #A65B9E;
+}
+
+.ground {
+    border-radius: 30px;
+    width:50px;
+    padding: 3px;
+    text-align: center;
+    background-color: #E5C654;
+}
+
+.rock {
+    border-radius: 30px;
+    width:50px;
+    padding: 3px;
+    text-align: center;
+    background-color: #CBBB71;
+}
+
+.bug {
+    border-radius: 30px;
+    width:50px;
+    padding: 3px;
+    text-align: center;
+    background-color: #C2D21F;
+}
+
+.ghost {
+    border-radius: 30px;
+    width:50px;
+    padding: 3px;
+    text-align: center;
+    background-color: #7773D3;
+}
+
+.electric {
+    border-radius: 30px;
+    width:50px;
+    padding: 3px;
+    text-align: center;
+    background-color: #FDE53C;
+}
+
+.psychic {
+    border-radius: 30px;
+    width:50px;
+    padding: 3px;
+    text-align: center;
+    background-color: #FA65B5;
+}
+
+.ice {
+    border-radius: 30px;
+    width:50px;
+    padding: 3px;
+    text-align: center;
+    background-color: #96F1FF;
+}
+
+.dragon {
+    border-radius: 30px;
+    width:50px;
+    padding: 3px;
+    text-align: center;
+    background-color: #8A76FF;
+}
+
+.dark {
+    border-radius: 30px;
+    width:50px;
+    padding: 3px;
+    text-align: center;
+    background-color: #8E6955;
+}
+
+.steel {
+    border-radius: 30px;
+    width:50px;
+    padding: 3px;
+    text-align: center;
+    background-color: #C4C2DA;
+}
+
+.fairy {
+    border-radius: 30px;
+    width:50px;
+    padding: 3px;
+    text-align: center;
+    background-color: #FAADFF;
+}
