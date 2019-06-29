@@ -9,7 +9,19 @@ export class MainService {
 
   constructor(private httpClient: HttpClient) { }
 
-  pegarPokemonPorNome(nomePokemon) {
+  getPokemonByNome(nomePokemon) {
     return this.httpClient.get<any>(`https://pokeapi.co/api/v2/pokemon/${nomePokemon}`);
+  }
+
+  getPokemonById(idPokemon) {
+    return this.httpClient.get<any>(`https://pokeapi.co/api/v2/pokemon/${idPokemon}`);
+  }
+
+  getPokemonTexto(idPokemon) {
+    return this.httpClient.get<any>(`https://pokeapi.co/api/v2/pokemon-species/${idPokemon}/`)
+  }
+
+  getPokemon(offset){
+    return this.httpClient.get<any>(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=20`);
   }
 }

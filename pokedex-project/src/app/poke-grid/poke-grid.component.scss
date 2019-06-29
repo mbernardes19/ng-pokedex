@@ -1,0 +1,19 @@
+.container{
+    padding-top: 43px;
+    display: flex;
+    width: 80%;
+    flex-flow: row wrap;
+    margin: 0 auto;
+}
+
+.card{
+    width: 150px;
+    height: 150px;
+    padding: 8px;
+    margin: 10px;
+    text-align: center;
+    border-radius: 20px;
+    -webkit-box-shadow: 1px 2px 14px -9px rgba(56,56,56,1);
+    -moz-box-shadow: 1px 2px 14px -9px rgba(56,56,56,1);
+    box-shadow: 1px 2px 14px -9px rgba(56,56,56,1);
+}

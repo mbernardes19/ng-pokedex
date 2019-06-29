@@ -14,7 +14,8 @@ export class MainComponent implements OnInit {
   tiposPokemon: string[] = [];
   pesoPokemon: number;
   alturaPokemon: number;
-  @Input() jujuba: string;
+  textoPokemon: string;
+  descricaoPokemon: string;
 
   constructor(private mainService: MainService) { }
 
@@ -29,7 +30,8 @@ export class MainComponent implements OnInit {
         this.pegarPeso(this.pokemonJSON);
         this.pegarAltura(this.pokemonJSON);
         this.pegarNum(this.pokemonJSON);
-    });
+        this.pegarTexto(this.pokemonJSON);
+      });
   }
 
   pegarPokemon() {
@@ -60,6 +62,28 @@ export class MainComponent implements OnInit {
 
   pegarAltura(pokemonJSON) {
     this.alturaPokemon = pokemonJSON.height;
+  }
+
+  pegarTexto(pokemonJSON) {
+    this.mainService.pegarTextoPokemon(pokemonJSON.id)
+      .subscribe(
+        especieJSON => {
+          let descricoes = [];
+          let textos = [];
+          
+          textos = especieJSON.flavor_text_entries;
+          const textosFiltrados = textos.filter((texto) => {
+            return texto.language.name === "en" && texto.version.name === "emerald";
+          })
+
+          descricoes = especieJSON.genera;
+          const descricoesFiltradas = descricoes.filter((descricao) => {
+            return descricao.language.name === "en";
+          });
+
+          this.descricaoPokemon = descricoesFiltradas[0].genus;
+          this.textoPokemon = textosFiltrados[0].flavor_text;
+        });;
   }
 
 }

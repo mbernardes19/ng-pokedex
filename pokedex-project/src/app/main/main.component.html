@@ -1,9 +1,12 @@
 <div id="container">
+    <div id="conteudo-container">
     <div id="imagem">
         <img src = {{urlImagem}}/>
     </div>
     <div id="conteudo">
         <p id="nome"><span>nº{{idPokemon}} </span>{{nomePokemon}}</p>
+        <span>{{descricaoPokemon}}</span>
+        
     <ul style="padding:0;">
         <div style="display:inline-block;" *ngFor="let tipo of tiposPokemon">
             <li style="display:inline-block;" [ngClass]="[tipo,'tipo']">
@@ -12,7 +15,13 @@
         </div>
     </ul>
 
-    Altura: {{alturaPokemon}}
-    Peso: {{pesoPokemon}}
+
+    Altura: {{alturaPokemon | paraCentimetros}}
+    Peso: {{pesoPokemon | paraQuilogramas}}kg
     </div>
+    </div>
+</div>
+
+<div id="texto">
+    <p style="margin-top:5px;">{{textoPokemon}}</p>
 </div>

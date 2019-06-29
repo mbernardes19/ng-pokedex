@@ -1,0 +1,15 @@
+.container-search-bar {
+    display: flex;
+    border: 1px solid black;
+    position: fixed;
+    background-color: red;
+    width: 100%;
+    justify-content: center;
+}
+
+#search-bar{
+    width: 50%;
+    margin: 10px;
+    border: 0;
+    height: 20px;
+}
