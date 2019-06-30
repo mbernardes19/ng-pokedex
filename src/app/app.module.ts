@@ -3,13 +3,15 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { MainComponent } from './main/main.component';
-import { TraduzTipoPipe } from './main/traduz-tipo.pipe';
+import { NavbarComponent } from '../componentes/navbar/navbar.component';
+import { MainComponent } from '../componentes/main/main.component';
+import { TraduzTipoPipe } from '../componentes/main/traduz-tipo.pipe';
 import { paraCentimetros } from './paraCentimetros.pipe';
 import { paraQuilogramas } from './paraQuilograma.pipe';
-import { SearchBarComponent } from './search-bar/search-bar.component';
-import { PokeGridComponent } from './poke-grid/poke-grid.component';
+import { SearchBarComponent } from '../componentes/search-bar/search-bar.component';
+import { PokeGridComponent } from '../componentes/poke-grid/poke-grid.component';
+import { DetalhesPokemonComponent } from './paginas/detalhes-pokemon/detalhes-pokemon.component';
+import { InicioComponent } from './paginas/inicio/inicio.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { PokeGridComponent } from './poke-grid/poke-grid.component';
     paraQuilogramas,
     SearchBarComponent,
     PokeGridComponent,
+    DetalhesPokemonComponent,
+    InicioComponent,
   ],
   imports: [
     HttpClientModule,

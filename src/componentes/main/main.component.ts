@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MainService } from './main.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { mergeMap, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-main',
@@ -17,11 +19,17 @@ export class MainComponent implements OnInit {
   textoPokemon: string;
   descricaoPokemon: string;
 
-  constructor(private mainService: MainService) { }
+  constructor(private mainService: MainService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.pegarPokemon().subscribe(
-      pokemonJSON => {
+    const queryParams = this.route.queryParams;
+    queryParams
+    .pipe(
+      switchMap(param => {
+        return this.pegarPokemon(parseInt(param.id));
+      })
+    )
+    .subscribe(pokemonJSON => {
         this.pokemonJSON = pokemonJSON
       
         this.pegarNome(this.pokemonJSON);
@@ -31,11 +39,11 @@ export class MainComponent implements OnInit {
         this.pegarAltura(this.pokemonJSON);
         this.pegarNum(this.pokemonJSON);
         this.pegarTexto(this.pokemonJSON);
-      });
+    });
   }
 
-  pegarPokemon() {
-    return this.mainService.pegarPokemonPorNome(this.nomePokemon);
+  pegarPokemon(id) {
+    return this.mainService.getPokemonById(id);
   }
 
   pegarNum(pokemonJSON){
@@ -65,7 +73,7 @@ export class MainComponent implements OnInit {
   }
 
   pegarTexto(pokemonJSON) {
-    this.mainService.pegarTextoPokemon(pokemonJSON.id)
+    this.mainService.getPokemonTexto(pokemonJSON.id)
       .subscribe(
         especieJSON => {
           let descricoes = [];

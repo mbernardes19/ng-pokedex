@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MainService } from '../main/main.service';
 import { tap, map, concatMap, mergeMap, toArray } from 'rxjs/operators';
 import { from } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-poke-grid',
@@ -14,10 +15,11 @@ export class PokeGridComponent implements OnInit {
   imagemPokemon: string;
   idPokemon: number;
   listaPokemonJSON: any[] = [];
-  listaPokemon: any[] = [];
+  listaPokemon = undefined;
   offset = 0;
+  loading = false;
 
-  constructor(private mainService: MainService) { }
+  constructor(private mainService: MainService, private router: Router) { }
 
   ngOnInit() {
     window.onscroll = this.checarLimiteTela;
@@ -30,7 +32,7 @@ export class PokeGridComponent implements OnInit {
         
         
         
-      
+        this.listaPokemon = [];
         this.listaPokemonJSON.map(pokemon => {
           this.pegarPokemonPorNome(pokemon['name'])
             .subscribe(dadosPokemon => {
@@ -80,9 +82,7 @@ export class PokeGridComponent implements OnInit {
   };
 
 
-  checarLimiteTela = () => {
-    const listaTemp: any[] = [];
-    
+  checarLimiteTela = () => {    
     if(document.documentElement.clientHeight + document.scrollingElement.scrollTop >= document.scrollingElement.scrollHeight) {
       this.offset += 20;
       this.pegarTodosPokemon(this.offset)
@@ -102,10 +102,22 @@ export class PokeGridComponent implements OnInit {
           map(pokemonArr => pokemonArr.sort(this.compare)),
         )
         .subscribe(dadosPokemon => {
-
           this.listaPokemon.push(...dadosPokemon);
 
         });
     }
+  }
+
+  abrirDetalhesPokemon(event) {
+    console.log(event);
+    let elemento = event.target;
+    if(event.target.nodeName === 'IMG') {
+      elemento = event.target.parentElement;
+    }
+    let id = elemento.textContent.slice(0,2);
+    id = parseInt(id);
+
+    this.router.navigate(['detalhes-pokemon'], {queryParams: {id: id}});
+
   }
 }

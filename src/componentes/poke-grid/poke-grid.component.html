@@ -1,0 +1,6 @@
+<div class="container">
+  <div (click) = "abrirDetalhesPokemon($event)" *ngFor="let pokemon of listaPokemon" class="card">
+    <img  src = {{pokemon.sprites.front_default}}>
+    <p><span>{{pokemon.id}} - </span>{{pokemon.name}}</p>
+  </div>
+</div>
