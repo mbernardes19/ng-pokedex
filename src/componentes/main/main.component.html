@@ -1,27 +1,128 @@
-<div id="container">
-    <div id="conteudo-container">
-    <div id="imagem">
-        <img src = {{urlImagem}}/>
-    </div>
-    <div id="conteudo">
-        <p id="nome"><span>nº{{idPokemon}} </span>{{nomePokemon}}</p>
-        <span>{{descricaoPokemon}}</span>
-        
-    <ul style="padding:0;">
-        <div style="display:inline-block;" *ngFor="let tipo of tiposPokemon">
-            <li style="display:inline-block;" [ngClass]="[tipo,'tipo']">
-                    {{tipo | traduzTipo}}
-            </li>
+
+<div *ngIf="tiposPokemon.length === 1" id="background" [ngClass]="tiposPokemon[0]+'-background'">
+
+<div>
+    <header id="container">
+        <div>
+            <h1 id="nome-pokemon">{{nomePokemon}}</h1>
+            <p id="descricao-pokemon">{{descricaoPokemon}}</p>
+            <ul id="tipo-pokemon" style="padding:0;">
+                    <div style="display:inline-block;" *ngFor="let tipo of tiposPokemon">
+                        <li style="display:inline-block;" [ngClass]="[tipo,'tipo']">
+                                {{tipo | traduzTipo}}
+                        </li>
+                    </div>
+            </ul>
+        </div>        
+        <div id="num-pokemon">
+            <p style="height: 10px; margin:0">#{{idPokemon}}</p>
         </div>
-    </ul>
+    </header>
 
-
-    Altura: {{alturaPokemon | paraCentimetros}}
-    Peso: {{pesoPokemon | paraQuilogramas}}kg
-    </div>
-    </div>
+    <div id="imagem-pokemon">
+        <img src = {{urlImagem}}/>
+    </div>    
 </div>
 
-<div id="texto">
-    <p style="margin-top:5px;">{{textoPokemon}}</p>
+
+<div id="conteudo-pokemon">
+        <nav id="main-nav">
+            <div class="nav-item">
+                <p>Sobre</p>
+            </div>
+            <div class="nav-item">
+                <p>Status base</p>
+            </div>
+            <div class="nav-item">
+                <p>Evolução</p>
+            </div>
+            <div class="nav-item">
+                <p>Ataques</p>
+            </div>
+        </nav>
+        <div id="conteudo">
+            <div>
+                <p style="margin-top:5px;margin-bottom:0px;">{{textoPokemon}}</p>
+            </div>
+            <div id="nomes-dados-container">
+                <p>Altura:</p>
+                <p>Peso:</p>
+                <p>Habilidades:</p>
+            </div>
+            <div id="valores-dados-container">
+                <p>{{alturaPokemon | paraCentimetros}}</p>
+                <p>{{pesoPokemon | paraQuilogramas}}kg</p>
+                <p>
+                    <span *ngFor="let habilidade of habilidadesPokemon">
+                        <span *ngIf="habilidadesPokemon[habilidadesPokemon.length-1].ability.name !== habilidade.ability.name"> {{habilidade.ability.name}}, </span>
+                        <span *ngIf="habilidadesPokemon[habilidadesPokemon.length-1].ability.name === habilidade.ability.name">{{habilidade.ability.name}}</span>        
+                    </span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div *ngIf="tiposPokemon.length > 1" id="background" [ngClass]="tiposPokemon[1]+'-background'">
+    <div>
+            <header id="container">
+                <div>
+                    <h1 id="nome-pokemon">{{nomePokemon}}</h1>
+                    <p id="descricao-pokemon">{{descricaoPokemon}}</p>
+                    <ul id="tipo-pokemon" style="padding:0;">
+                            <div style="display:inline-block;" *ngFor="let tipo of tiposPokemon">
+                                <li style="display:inline-block;" [ngClass]="[tipo,'tipo']">
+                                        {{tipo | traduzTipo}}
+                                </li>
+                            </div>
+                    </ul>
+                </div>        
+                <div id="num-pokemon">
+                    <p style="height: 10px; margin:0">#{{idPokemon}}</p>
+                </div>
+            </header>
+        
+            <div id="imagem-pokemon">
+                <img src = {{urlImagem}}/>
+            </div>    
+        </div>
+        
+        
+        <div id="conteudo-pokemon">
+            <nav id="main-nav">
+                <div class="nav-item">
+                    <p>Sobre</p>
+                </div>
+                <div class="nav-item">
+                    <p>Status base</p>
+                </div>
+                <div class="nav-item">
+                    <p>Evolução</p>
+                </div>
+                <div class="nav-item">
+                    <p>Ataques</p>
+                </div>
+            </nav>
+            <div id="conteudo">
+                <div>
+                    <p style="margin-top:5px;margin-bottom:0px;">{{textoPokemon}}</p>
+                </div>
+                <div id="nomes-dados-container">
+                    <p>Altura:</p>
+                    <p>Peso:</p>
+                    <p>Habilidades:</p>
+                </div>
+                <div id="valores-dados-container">
+                    <p>{{alturaPokemon | paraCentimetros}}</p>
+                    <p>{{pesoPokemon | paraQuilogramas}}kg</p>
+                    <p>
+                        <span *ngFor="let habilidade of habilidadesPokemon">
+                            <span *ngIf="habilidadesPokemon[habilidadesPokemon.length-1].ability.name !== habilidade.ability.name"> {{habilidade.ability.name}}, </span>
+                            <span *ngIf="habilidadesPokemon[habilidadesPokemon.length-1].ability.name === habilidade.ability.name">{{habilidade.ability.name}}</span>        
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </div>
 </div>

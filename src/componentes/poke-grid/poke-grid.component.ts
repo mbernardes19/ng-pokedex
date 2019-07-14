@@ -114,7 +114,7 @@ export class PokeGridComponent implements OnInit {
     if(event.target.nodeName === 'IMG') {
       elemento = event.target.parentElement;
     }
-    let id = elemento.textContent.slice(0,2);
+    let id = elemento.textContent.slice(0,3);
     id = parseInt(id);
 
     this.router.navigate(['detalhes-pokemon'], {queryParams: {id: id}});

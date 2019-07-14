@@ -18,6 +18,7 @@ export class MainComponent implements OnInit {
   alturaPokemon: number;
   textoPokemon: string;
   descricaoPokemon: string;
+  habilidadesPokemon: string[] = [];
 
   constructor(private mainService: MainService, private route: ActivatedRoute) { }
 
@@ -26,6 +27,8 @@ export class MainComponent implements OnInit {
     queryParams
     .pipe(
       switchMap(param => {
+        console.log(param.id);
+        this.idPokemon = parseInt(param.id);
         return this.pegarPokemon(parseInt(param.id));
       })
     )
@@ -39,6 +42,7 @@ export class MainComponent implements OnInit {
         this.pegarAltura(this.pokemonJSON);
         this.pegarNum(this.pokemonJSON);
         this.pegarTexto(this.pokemonJSON);
+        this.pegarHabilidades(this.pokemonJSON);
     });
   }
 
@@ -54,8 +58,26 @@ export class MainComponent implements OnInit {
       this.nomePokemon = pokemonJSON.name;
   }
 
+  pegarHabilidades(pokemonJSON) {
+    this.habilidadesPokemon = pokemonJSON.abilities;
+  }
+
   pegarImagem(pokemonJSON) {
-      this.urlImagem = pokemonJSON.sprites.front_default;
+    console.log(pokemonJSON);
+    let numPokemon  = '';
+    if (pokemonJSON.id < 10) {
+      numPokemon = '00' + pokemonJSON.id;
+    }
+    if (pokemonJSON.id >= 10 && pokemonJSON.id < 100) {
+      numPokemon = '0' + pokemonJSON.id;
+    }
+    if (pokemonJSON.id >= 100) {
+      numPokemon = pokemonJSON.id;
+    }
+    
+    console.log(pokemonJSON.id);
+    console.log(numPokemon);
+    this.urlImagem = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${numPokemon}.png`
   }
 
   pegarTipo(pokemonJSON) {
