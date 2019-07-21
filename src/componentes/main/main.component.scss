@@ -37,7 +37,7 @@
     background-color: white;
 }
 
-#conteudo {
+.conteudo {
     padding-top: 15px;
     display: flex;
     flex-flow: row wrap;
@@ -78,11 +78,22 @@
 
 }
 
-.nav-item {
-    border-width: 0px 0px 2px 0px;
-    border-color: black;
-    border-style: solid;
+.navItemSelecionado {
+    border-width: 0px 0px 2px 0px !important;
+    border-color: black !important;
+    border-style: solid !important;
 }
+
+
+#main-nav div {
+    cursor: pointer;
+    border-width: 0px 0px 2px 0px;
+    border-style: none;
+    border-color: transparent;
+    padding: 20px 0px;
+    transition: border-color .5s;
+}
+
 
 .tipo {
     font-size:12px;

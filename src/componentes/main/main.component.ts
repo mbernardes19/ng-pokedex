@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MainService } from './main.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { mergeMap, switchMap } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-main',
@@ -19,19 +19,12 @@ export class MainComponent implements OnInit {
   textoPokemon: string;
   descricaoPokemon: string;
   habilidadesPokemon: string[] = [];
+  navItemSelecionado = 'sobre';
 
   constructor(private mainService: MainService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    const queryParams = this.route.queryParams;
-    queryParams
-    .pipe(
-      switchMap(param => {
-        console.log(param.id);
-        this.idPokemon = parseInt(param.id);
-        return this.pegarPokemon(parseInt(param.id));
-      })
-    )
+    this.pegarPokemonPorQueryParameter()
     .subscribe(pokemonJSON => {
         this.pokemonJSON = pokemonJSON
       
@@ -44,6 +37,24 @@ export class MainComponent implements OnInit {
         this.pegarTexto(this.pokemonJSON);
         this.pegarHabilidades(this.pokemonJSON);
     });
+  }
+
+  mudarFocoNavItem(event) {
+    const navItem = <HTMLElement>event.target;
+    if (navItem.id !== this.navItemSelecionado)
+      this.navItemSelecionado = navItem.id;
+  }
+
+  pegarPokemonPorQueryParameter() {
+    const queryParams = this.route.queryParams;
+    
+    return queryParams
+    .pipe(
+      switchMap(param => {
+        console.log(param.id);
+        this.idPokemon = parseInt(param.id);
+        return this.pegarPokemon(parseInt(param.id));
+      }));
   }
 
   pegarPokemon(id) {
