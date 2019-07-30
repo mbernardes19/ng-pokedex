@@ -1,80 +1,85 @@
-
 <div [ngClass]="tiposPokemon[0]+'-background'">
 
-<div>
+  <div>
     <header id="container">
-        <div>
-            <h1 id="nome-pokemon">{{nomePokemon}}</h1>
-            <p id="descricao-pokemon">{{descricaoPokemon}}</p>
-            <ul id="tipo-pokemon" style="padding:0;">
-                    <div style="display:inline-block;" *ngFor="let tipo of tiposPokemon">
-                        <li style="display:inline-block;" [ngClass]="[tipo,'tipo']">
-                                {{tipo | traduzTipo}}
-                        </li>
-                    </div>
-            </ul>
-        </div>        
-        <div id="num-pokemon">
-            <p style="height: 10px; margin:0">#{{idPokemon}}</p>
-        </div>
+      <div>
+        <h1 id="nome-pokemon">{{nomePokemonCamel}}</h1>
+        <p id="descricao-pokemon">{{descricaoPokemon}}</p>
+        <ul id="tipo-pokemon" style="padding:0;">
+          <div style="display:inline-block;" *ngFor="let tipo of tiposPokemon" class="tipos">
+            <li style="display:inline-block;" [ngClass]="[tipo,'tipo']">
+              {{tipo | traduzTipo}}
+            </li>
+          </div>
+        </ul>
+      </div>
+      <div id="num-pokemon">
+        <p style="height: 10px; margin:0">#{{idPokemon}}</p>
+      </div>
     </header>
 
     <div id="imagem-pokemon">
-        <img src = {{urlImagem}}/>
-    </div>    
-</div>
-
-
-<div id="conteudo-pokemon">
-        <nav id="main-nav">
-            <div id="sobre" (click)="mudarFocoNavItem($event)" [ngClass]="navItemSelecionado === 'sobre' ? 'navItemSelecionado' : null">
-                Sobre
-            </div>
-            <div id="status" (click)="mudarFocoNavItem($event)" [ngClass]="navItemSelecionado === 'status' ? 'navItemSelecionado' : null">
-                Status base
-            </div>
-            <div id="evolucao" (click)="mudarFocoNavItem($event)" [ngClass]="navItemSelecionado === 'evolucao' ? 'navItemSelecionado' : null">
-                Evolução
-            </div>
-            <div id="ataque" (click)="mudarFocoNavItem($event)" [ngClass]="navItemSelecionado === 'ataque' ? 'navItemSelecionado' : null">
-                Ataques
-            </div>
-        </nav>
-        <div *ngIf="navItemSelecionado === 'sobre'" id="sobre" class="conteudo">
-            <div>
-                <p style="margin-top:5px;margin-bottom:0px;">{{textoPokemon}}</p>
-            </div>
-            <div id="nomes-dados-container">
-                <p>Altura:</p>
-                <p>Peso:</p>
-                <p>Habilidades:</p>
-            </div>
-            <div id="valores-dados-container">
-                <p>{{alturaPokemon | paraCentimetros}}</p>
-                <p>{{pesoPokemon | paraQuilogramas}}kg</p>
-                <p>
-                    <span *ngFor="let habilidade of habilidadesPokemon">
-                        <span *ngIf="habilidadesPokemon[habilidadesPokemon.length-1].ability.name !== habilidade.ability.name"> {{habilidade.ability.name}}, </span>
-                        <span *ngIf="habilidadesPokemon[habilidadesPokemon.length-1].ability.name === habilidade.ability.name">{{habilidade.ability.name}}</span>        
-                    </span>
-                </p>
-            </div>
-        </div>
-        <div *ngIf="navItemSelecionado === 'status'" id="status" class="conteudo">
-            <div>
-                Isso aqui é o status
-            </div>
-        </div>
-        <div *ngIf="navItemSelecionado === 'evolucao'" id="status" class="conteudo">
-            <div>
-                Isso aqui é a evolução
-            </div>
-        </div>
-        <div *ngIf="navItemSelecionado === 'ataque'" id="status" class="conteudo">
-            <div>
-                Isso aqui é o ataque
-            </div>
-        </div>
+      <img src={{urlImagem}} />
     </div>
+  </div>
+
+
+  <div id="conteudo-pokemon">
+    <nav id="main-nav">
+      <div id="sobre" (click)="mudarFocoNavItem($event)"
+        [ngClass]="navItemSelecionado === 'sobre' ? 'navItemSelecionado' : null">
+        Sobre
+      </div>
+      <div id="status" (click)="mudarFocoNavItem($event)"
+        [ngClass]="navItemSelecionado === 'status' ? 'navItemSelecionado' : null">
+        Status base
+      </div>
+      <div id="evolucao" (click)="mudarFocoNavItem($event)"
+        [ngClass]="navItemSelecionado === 'evolucao' ? 'navItemSelecionado' : null">
+        Evolução
+      </div>
+      <div id="ataque" (click)="mudarFocoNavItem($event)"
+        [ngClass]="navItemSelecionado === 'ataque' ? 'navItemSelecionado' : null">
+        Ataques
+      </div>
+    </nav>
+    <div *ngIf="navItemSelecionado === 'sobre'" id="sobre" class="conteudo">
+      <div>
+        <p style="margin-top:5px;margin-bottom:0px;">{{textoPokemon}}</p>
+      </div>
+      <div id="nomes-dados-container">
+        <p>Altura:</p>
+        <p>Peso:</p>
+        <p>Habilidades:</p>
+      </div>
+      <div id="valores-dados-container">
+        <p>{{alturaPokemon | paraCentimetros}}</p>
+        <p>{{pesoPokemon | paraQuilogramas}}kg</p>
+        <p>
+          <span *ngFor="let habilidade of habilidadesPokemon">
+            <span *ngIf="habilidadesPokemon[habilidadesPokemon.length-1].ability.name !== habilidade.ability.name">
+              {{habilidade.ability.name}}, </span>
+            <span
+              *ngIf="habilidadesPokemon[habilidadesPokemon.length-1].ability.name === habilidade.ability.name">{{habilidade.ability.name}}</span>
+          </span>
+        </p>
+      </div>
+    </div>
+    <div *ngIf="navItemSelecionado === 'status'" id="status" class="conteudo">
+      <div>
+        Isso aqui é o status
+      </div>
+    </div>
+    <div *ngIf="navItemSelecionado === 'evolucao'" id="status" class="conteudo">
+      <div>
+        Isso aqui é a evolução
+      </div>
+    </div>
+    <div *ngIf="navItemSelecionado === 'ataque'" id="status" class="conteudo">
+      <div>
+        Isso aqui é o ataque
+      </div>
+    </div>
+  </div>
 
 </div>

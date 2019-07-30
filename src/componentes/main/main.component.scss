@@ -22,6 +22,10 @@
 
 #tipo-pokemon {
     margin: 15px 0px;
+
+    div + div{
+        margin-left: 5px;
+    }
 }
 
 #num-pokemon {
@@ -94,7 +98,6 @@
     transition: border-color .5s;
 }
 
-
 .tipo {
     font-size:12px;
     color: white;
@@ -161,7 +164,7 @@
 .poison {
     border-radius: 30px;
     width:50px;
-    padding: 3px;
+    padding: 3px 8px;
     text-align: center;
     background-color: #A65B9E;
 }

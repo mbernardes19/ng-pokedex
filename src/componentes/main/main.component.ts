@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MainService } from './main.service';
 import { ActivatedRoute } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-main',
@@ -20,6 +20,7 @@ export class MainComponent implements OnInit {
   descricaoPokemon: string;
   habilidadesPokemon: string[] = [];
   navItemSelecionado = 'sobre';
+  nomePokemonCamel: string;
 
   constructor(private mainService: MainService, private route: ActivatedRoute) { }
 
@@ -36,6 +37,7 @@ export class MainComponent implements OnInit {
         this.pegarNum(this.pokemonJSON);
         this.pegarTexto(this.pokemonJSON);
         this.pegarHabilidades(this.pokemonJSON);
+        this.pegarStatusBase(this.pokemonJSON);
     });
   }
 
@@ -67,6 +69,7 @@ export class MainComponent implements OnInit {
 
   pegarNome(pokemonJSON) {
       this.nomePokemon = pokemonJSON.name;
+      this.nomePokemonCamel = pokemonJSON.name.charAt(0).toUpperCase() + pokemonJSON.name.slice(1);
   }
 
   pegarHabilidades(pokemonJSON) {
@@ -85,7 +88,7 @@ export class MainComponent implements OnInit {
     if (pokemonJSON.id >= 100) {
       numPokemon = pokemonJSON.id;
     }
-    
+
     console.log(pokemonJSON.id);
     console.log(numPokemon);
     this.urlImagem = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${numPokemon}.png`
@@ -124,7 +127,16 @@ export class MainComponent implements OnInit {
 
           this.descricaoPokemon = descricoesFiltradas[0].genus;
           this.textoPokemon = textosFiltrados[0].flavor_text;
-        });;
+        });
+  }
+
+  // RESOLVER ESSA MERDA
+  
+  pegarStatusBase(pokemonJSON) {
+    console.log(pokemonJSON);
+    const statusObj = {statusBase: pokemonJSON.stat.base_stat, statusNome: pokemonJSON.stat.name};
+    console.log(statusObj);
+    return statusObj;
   }
 
 }
