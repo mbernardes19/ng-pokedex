@@ -81,30 +81,33 @@ export class PokeGridComponent implements OnInit {
     return comparison;
   };
 
+  carregarMaisPokemon = () => {
+    this.offset += 20;
+    this.pegarTodosPokemon(this.offset)
+      .pipe(
+        map(json => json.results),
+        concatMap(pokemonArr => from(pokemonArr)),
+        mergeMap(pokemon => {
+          return this.pegarPokemonPorNome(pokemon['name'])
+        }),
+        tap(pokemon => {
+          if (pokemon.id < 10 && pokemon.id.toString().charAt(0)!=='0') {
+            pokemon.id = '0' + pokemon.id.toString();
+          }
+          pokemon.name = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
+        }),
+        toArray(),
+        map(pokemonArr => pokemonArr.sort(this.compare)),
+      )
+      .subscribe(dadosPokemon => {
+        this.listaPokemon.push(...dadosPokemon);
 
-  checarLimiteTela = () => {    
-    if(document.documentElement.clientHeight + document.scrollingElement.scrollTop >= document.scrollingElement.scrollHeight) {
-      this.offset += 20;
-      this.pegarTodosPokemon(this.offset)
-        .pipe(
-          map(json => json.results),
-          concatMap(pokemonArr => from(pokemonArr)),
-          mergeMap(pokemon => {
-            return this.pegarPokemonPorNome(pokemon['name'])
-          }),
-          tap(pokemon => {
-            if (pokemon.id < 10 && pokemon.id.toString().charAt(0)!=='0') {
-              pokemon.id = '0' + pokemon.id.toString();
-            }
-            pokemon.name = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
-          }),
-          toArray(),
-          map(pokemonArr => pokemonArr.sort(this.compare)),
-        )
-        .subscribe(dadosPokemon => {
-          this.listaPokemon.push(...dadosPokemon);
+      });
+  }
 
-        });
+  checarLimiteTela = () => {
+    if (document.documentElement.clientHeight + document.scrollingElement.scrollTop >= document.scrollingElement.scrollHeight) {
+      this.carregarMaisPokemon();
     }
   }
 

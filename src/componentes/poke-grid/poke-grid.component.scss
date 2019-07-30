@@ -1,13 +1,14 @@
-.container{
+.container {
     padding-top: 43px;
     display: flex;
     width: 80%;
+    max-width: 980px;
     flex-flow: row wrap;
     margin: 0 auto;
     justify-content:center;
 }
 
-.card{
+.card {
     width: 150px;
     height: 150px;
     padding: 8px;
@@ -17,4 +18,13 @@
     -webkit-box-shadow: 1px 2px 14px -9px rgba(56,56,56,1);
     -moz-box-shadow: 1px 2px 14px -9px rgba(56,56,56,1);
     box-shadow: 1px 2px 14px -9px rgba(56,56,56,1);
+}
+
+button {
+    padding: 8px 18px;  
+    font-size: 14px;
+    margin: 10px auto;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
 }
