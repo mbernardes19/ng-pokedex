@@ -102,157 +102,193 @@
     font-size:12px;
     color: white;
     font-weight: bolder;
+    border-radius: 30px;
+    width:50px;
+    padding: 3px;
+    text-align: center;
     // Falta colocar border no texto
 }
 
 .flying {
-    border-radius: 30px;
-    width:50px;
-    padding: 3px;
-    text-align: center;
+    --primary: #79A4FF;
     background-color: #79A4FF;
 }
 
-.flying-background {
-    background-color: rgb(94, 135, 223);
-}
-
 .normal {
-    border-radius: 30px;
-    width:50px;
-    padding: 3px;
-    text-align: center;
+    --primary: #BCBCAE;
     background-color: #BCBCAE;
 }
 
 .fire {
-    border-radius: 30px;
-    width:50px;
-    padding: 3px;
-    text-align: center;
+    --primary: #FA5543;
     background-color: #FA5543;
 }
 
-.fire-background {
-    background-color: rgb(216, 67, 51);
-}
-
 .grass {
-    border-radius: 30px;
-    width:50px;
-    padding: 3px;
-    text-align: center;
+    --primary: #8DD851;
     background-color: #8DD851;
 }
 
 .water {
-    border-radius: 30px;
-    width:50px;
-    padding: 3px;
-    text-align: center;
+    --primary: #56AEFF;
     background-color: #56AEFF;
 }
 
 .fighting {
-    border-radius: 30px;
-    width:50px;
-    padding: 3px;
-    text-align: center;
+    --primary: #A85645;
     background-color: #A85645;
 }
 
 .poison {
-    border-radius: 30px;
-    width:50px;
-    padding: 3px 8px;
-    text-align: center;
+    --primary: #A65B9E;
     background-color: #A65B9E;
 }
 
 .ground {
-    border-radius: 30px;
-    width:50px;
-    padding: 3px;
-    text-align: center;
+    --primary: #E5C654;
     background-color: #E5C654;
 }
 
 .rock {
-    border-radius: 30px;
-    width:50px;
-    padding: 3px;
-    text-align: center;
+    --primary: #CBBB71;
     background-color: #CBBB71;
 }
 
 .bug {
-    border-radius: 30px;
-    width:50px;
-    padding: 3px;
-    text-align: center;
+    --primary: #C2D21F;
     background-color: #C2D21F;
 }
 
 .ghost {
-    border-radius: 30px;
-    width:50px;
-    padding: 3px;
-    text-align: center;
+    --primary: #7773D3;
     background-color: #7773D3;
 }
 
 .electric {
-    border-radius: 30px;
-    width:50px;
-    padding: 3px;
-    text-align: center;
+    --primary: #FDE53C;
     background-color: #FDE53C;
 }
 
 .psychic {
-    border-radius: 30px;
-    width:50px;
-    padding: 3px;
-    text-align: center;
+    --primary: #FA65B5;
     background-color: #FA65B5;
 }
 
 .ice {
-    border-radius: 30px;
-    width:50px;
-    padding: 3px;
-    text-align: center;
+    --primary: #96F1FF;
     background-color: #96F1FF;
 }
 
 .dragon {
-    border-radius: 30px;
-    width:50px;
-    padding: 3px;
-    text-align: center;
+    --primary: #8A76FF;
     background-color: #8A76FF;
 }
 
 .dark {
-    border-radius: 30px;
-    width:50px;
-    padding: 3px;
-    text-align: center;
+    --primary: #8E6955;
     background-color: #8E6955;
 }
 
 .steel {
-    border-radius: 30px;
-    width:50px;
-    padding: 3px;
-    text-align: center;
+    --primary: #C4C2DA;
     background-color: #C4C2DA;
 }
 
 .fairy {
-    border-radius: 30px;
-    width:50px;
-    padding: 3px;
-    text-align: center;
+    --primary: #FAADFF;
     background-color: #FAADFF;
+}
+
+.fairy {
+    --secondary: #FAADFF;
+    background-color: #FAADFF;
+}
+
+.steel {
+    --secondary: #C4C2DA;
+    background-color: #C4C2DA;
+}
+
+.dark {
+    --secondary: #8E6955;
+    background-color: #8E6955;
+}
+
+.dragon {
+    --secondary: #8A76FF;
+    background-color: #8A76FF;
+}
+
+.ice {
+    --secondary: #96F1FF;
+    background-color: #96F1FF;
+}
+
+.psychic {
+    --secondary: #FA65B5;
+    background-color: #FA65B5;
+}
+
+.electric {
+    --secondary: #FDE53C;
+    background-color: #FDE53C;
+}
+
+.ghost {
+    --secondary: #7773D3;
+    background-color: #7773D3;
+}
+
+.bug {
+    --secondary: #C2D21F;
+    background-color: #C2D21F;
+}
+
+.rock {
+    --secondary: #CBBB71;
+    background-color: #CBBB71;
+}
+
+.ground {
+    --secondary: #E5C654;
+    background-color: #E5C654;
+}
+
+.poison {
+    --secondary: #A65B9E;
+    background-color: #A65B9E;
+}
+
+.fighting {
+    --secondary: #A85645;
+    background-color: #A85645;
+}
+
+.water {
+    --secondary: #56AEFF;
+    background-color: #56AEFF;
+}
+
+.grass {
+    --secondary: #8DD851;
+    background-color: #8DD851;
+}
+
+.fire {
+    --secondary: #FA5543;
+    background-color: #FA5543;
+}
+
+.normal {
+    --secondary: #BCBCAE;
+    background-color: #BCBCAE;
+}
+
+.flying {
+    --secondary: #79A4FF;
+    background-color: #79A4FF;
+}
+
+.gradient {
+    background-image: linear-gradient(var(--primary), var(--secondary));
 }

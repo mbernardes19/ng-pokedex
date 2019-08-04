@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { MainService } from './main.service';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap, map } from 'rxjs/operators';
@@ -21,14 +21,15 @@ export class MainComponent implements OnInit {
   habilidadesPokemon: string[] = [];
   navItemSelecionado = 'sobre';
   nomePokemonCamel: string;
+  temDoisTipos = true;
 
   constructor(private mainService: MainService, private route: ActivatedRoute) { }
+    @ViewChild('background', {static: true}) backgroundElement: ElementRef<any>;
 
   ngOnInit() {
     this.pegarPokemonPorQueryParameter()
     .subscribe(pokemonJSON => {
-        this.pokemonJSON = pokemonJSON
-      
+        this.pokemonJSON = pokemonJSON;
         this.pegarNome(this.pokemonJSON);
         this.pegarImagem(this.pokemonJSON);
         this.pegarTipo(this.pokemonJSON);
@@ -39,7 +40,29 @@ export class MainComponent implements OnInit {
         this.pegarHabilidades(this.pokemonJSON);
         this.pegarStatusBase(this.pokemonJSON);
     });
+
+    this.preencherBackground();
+
   }
+
+  preencherBackground() {
+    const coresTipos = {
+      fire: '#FA5543',
+      flying: '#79A4FF'
+    };
+
+    const tipo1 = this.tiposPokemon[0];
+    const tipo2 = this.tiposPokemon.length > 1 ? this.tiposPokemon[1] : this.tiposPokemon[0];
+
+    const background = this.backgroundElement.nativeElement as HTMLDivElement;
+    background.style.backgroundImage = 'linear-gradient(coresTipos[tipo1], coresTipos[tipo2])';
+  }
+
+
+
+
+
+
 
   mudarFocoNavItem(event) {
     const navItem = <HTMLElement>event.target;
@@ -53,7 +76,6 @@ export class MainComponent implements OnInit {
     return queryParams
     .pipe(
       switchMap(param => {
-        console.log(param.id);
         this.idPokemon = parseInt(param.id);
         return this.pegarPokemon(parseInt(param.id));
       }));
@@ -77,7 +99,6 @@ export class MainComponent implements OnInit {
   }
 
   pegarImagem(pokemonJSON) {
-    console.log(pokemonJSON);
     let numPokemon  = '';
     if (pokemonJSON.id < 10) {
       numPokemon = '00' + pokemonJSON.id;
@@ -89,8 +110,6 @@ export class MainComponent implements OnInit {
       numPokemon = pokemonJSON.id;
     }
 
-    console.log(pokemonJSON.id);
-    console.log(numPokemon);
     this.urlImagem = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${numPokemon}.png`
   }
 
@@ -131,11 +150,8 @@ export class MainComponent implements OnInit {
   }
 
   // RESOLVER ESSA MERDA
-  
   pegarStatusBase(pokemonJSON) {
-    console.log(pokemonJSON);
     const statusObj = {statusBase: pokemonJSON.stat.base_stat, statusNome: pokemonJSON.stat.name};
-    console.log(statusObj);
     return statusObj;
   }
 

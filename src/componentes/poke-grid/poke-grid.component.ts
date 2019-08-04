@@ -36,11 +36,9 @@ export class PokeGridComponent implements OnInit {
         this.listaPokemonJSON.map(pokemon => {
           this.pegarPokemonPorNome(pokemon['name'])
             .subscribe(dadosPokemon => {
-              console.log(dadosPokemon);
               this.listaPokemon.push(dadosPokemon);
               this.listaPokemon.sort(this.compare);
               this.listaPokemon.map(pokemon => {
-                console.log(pokemon.name);
                 
                 if (pokemon.id < 10 && pokemon.id.toString().charAt(0)!=='0') {
                   pokemon.id = '0' + pokemon.id.toString();
@@ -112,7 +110,6 @@ export class PokeGridComponent implements OnInit {
   }
 
   abrirDetalhesPokemon(event) {
-    console.log(event);
     let elemento = event.target;
     if(event.target.nodeName === 'IMG') {
       elemento = event.target.parentElement;
