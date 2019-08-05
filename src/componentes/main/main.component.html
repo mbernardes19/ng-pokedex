@@ -24,6 +24,7 @@
 
 
   <div id="conteudo-pokemon">
+    <div class="horizontal-scroll">
     <nav id="main-nav">
       <div id="sobre" (click)="mudarFocoNavItem($event)"
         [ngClass]="navItemSelecionado === 'sobre' ? 'navItemSelecionado' : null">
@@ -42,6 +43,9 @@
         Ataques
       </div>
     </nav>
+  </div>
+
+    <!-- Menu Sobre -->
     <div *ngIf="navItemSelecionado === 'sobre'" id="sobre" class="conteudo">
       <div>
         <p style="margin-top:5px;margin-bottom:0px;">{{textoPokemon}}</p>
@@ -64,10 +68,22 @@
         </p>
       </div>
     </div>
+    
+    <!-- Menu Status Base -->
     <div *ngIf="navItemSelecionado === 'status'" id="status" class="conteudo">
-      <div>
-        Isso aqui é o status
+      <div id="nomes-dados-container">
+        <p>HP:</p>
+        <p>Ataque:</p>
+        <p>Defesa:</p>
+        <p>Ataque Especial:</p>
+        <p>Defesa Especial:</p>
+        <p>Velocidade:</p>
       </div>
+      <div id="valores-dados-container">
+        <p *ngFor="let status of statusBase">{{status.base_stat}}</p>
+      </div>
+
+
     </div>
     <div *ngIf="navItemSelecionado === 'evolucao'" id="status" class="conteudo">
       <div>

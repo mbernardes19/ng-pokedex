@@ -24,8 +24,4 @@ export class MainService {
   getPokemon(offset){
     return this.httpClient.get<any>(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=20`);
   }
-
-  getPokemonStatusBase(pokemonId) {
-    return this.httpClient.get<any>(`https://pokeapi.co/api/v2/stat/${pokemonId}/`);
-  }
 }

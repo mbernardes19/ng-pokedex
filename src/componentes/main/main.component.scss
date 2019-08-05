@@ -48,13 +48,14 @@
 }
 
 #nomes-dados-container {
-    width: 20%;
+    width: 45%;
     display: flex;
     flex-flow: column wrap;
+    min-width: 150px;
 }
 
 #valores-dados-container {
-    width: 60%;
+    width: 20%;
     display: flex;
     padding-left: 4px;
     flex-flow: column wrap;
@@ -79,7 +80,19 @@
 #main-nav {
     display: flex;
     justify-content: space-between;
+    min-width: 350px;
+}
 
+.horizontal-scroll {
+    overflow-x: scroll;
+}
+
+.horizontal-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.horizontal-scroll::-moz-scrollbar {
+    display: none;
 }
 
 .navItemSelecionado {

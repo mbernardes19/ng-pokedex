@@ -21,7 +21,7 @@ export class MainComponent implements OnInit {
   habilidadesPokemon: string[] = [];
   navItemSelecionado = 'sobre';
   nomePokemonCamel: string;
-  temDoisTipos = true;
+  statusBase: any[] = [];
 
   constructor(private mainService: MainService, private route: ActivatedRoute) { }
     @ViewChild('background', {static: true}) backgroundElement: ElementRef<any>;
@@ -133,15 +133,15 @@ export class MainComponent implements OnInit {
         especieJSON => {
           let descricoes = [];
           let textos = [];
-          
+
           textos = especieJSON.flavor_text_entries;
           const textosFiltrados = textos.filter((texto) => {
-            return texto.language.name === "en" && texto.version.name === "emerald";
+            return texto.language.name === 'en' && texto.version.name === 'emerald';
           })
 
           descricoes = especieJSON.genera;
           const descricoesFiltradas = descricoes.filter((descricao) => {
-            return descricao.language.name === "en";
+            return descricao.language.name === 'en';
           });
 
           this.descricaoPokemon = descricoesFiltradas[0].genus;
@@ -149,10 +149,8 @@ export class MainComponent implements OnInit {
         });
   }
 
-  // RESOLVER ESSA MERDA
   pegarStatusBase(pokemonJSON) {
-    const statusObj = {statusBase: pokemonJSON.stat.base_stat, statusNome: pokemonJSON.stat.name};
-    return statusObj;
+    this.statusBase = pokemonJSON.stats.reverse();
   }
 
 }
